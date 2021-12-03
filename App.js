@@ -7,7 +7,8 @@ import uuid from "react-native-uuid";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
-  const [type, setType] = useState(Camera.Constants.Type.front);
+  const [type, setType] = useState(Camera.Constants.Type.back);
+  const [flashMode, setFlashMode] = useState(Camera.Constants.FlashMode.off);
   const [facesArray, setfacesArray] = useState([]);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function App() {
       <Camera
         style={styles.camera}
         type={type}
+        flashMode={flashMode}
         onFacesDetected={({ faces }) => {
           setfacesArray(faces);
         }}
@@ -74,6 +76,23 @@ export default function App() {
             source={require("./assets/icons8-switch-camera-48.png")}
           />
         </TouchableOpacity>
+        {type === Camera.Constants.Type.back && (
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              setFlashMode(
+                flashMode === Camera.Constants.FlashMode.torch
+                  ? Camera.Constants.FlashMode.off
+                  : Camera.Constants.FlashMode.torch
+              );
+            }}
+          >
+            <Image
+              style={styles.switchCamera}
+              source={require("./assets/icons8-flash-on-50.png")}
+            />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
@@ -89,6 +108,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 0.1,
     backgroundColor: "#DDDDDD",
+    flexDirection: "row",
   },
   button: {
     flex: 1,
