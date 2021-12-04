@@ -1,0 +1,51 @@
+Array [
+  Object {
+    "bottomMouthPosition": Object {
+      "x": 179.56856814297765,
+      "y": 410.7332561883059,
+    },
+    "bounds": Object {
+      "origin": Object {
+        "x": 89.74431818181822,
+        "y": 224.53249289772725,
+      },
+      "size": Object {
+        "height": 234.20774147727272,
+        "width": 179.23295454545453,
+      },
+    },
+    "faceID": 0,
+    "leftCheekPosition": Object {
+      "x": 218.7576432661577,
+      "y": 367.52985516461456,
+    },
+    "leftEarPosition": Object {
+      "x": 239.8897829922763,
+      "y": 332.21485982157964,
+    },
+    "leftEyeOpenProbability": 0.9938164353370667,
+    "leftEyePosition": Object {
+      "x": 209.04866305264562,
+      "y": 313.6545329419049,
+    },
+    "leftMouthPosition": Object {
+      "x": 201.30515878850767,
+      "y": 399.0587570667267,
+    },
+    "noseBasePosition": Object {
+      "x": 180.40310772982514,
+      "y": 352.9518610564145,
+    },
+    "rightCheekPosition": Object {
+      "x": 140.4331293973056,
+      "y": 368.04748552495784,
+    },
+    "rightEarPosition": Object {
+      "x": 112.63723546808421,
+      "y": 341.671958359805,
+    },
+    "rightEyeOpenProbability": 0.9971305727958679,
+    "rightEyePosition": Object {
+      "x": 151.66341955011544,
+      "y": 314.2134189714085,
+    },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Image, View, TouchableOpacity, Text } from "react-native";
 import { Camera } from "expo-camera";
 import * as FaceDetector from "expo-face-detector";
@@ -18,6 +18,8 @@ export default function App() {
     })();
   }, []);
 
+  const camera = useRef(null);
+
   if (hasPermission === null) {
     return <View />;
   }
@@ -27,22 +29,34 @@ export default function App() {
 
   const handleFacesDetected = ({ faces }) => {
     setfacesArray(faces);
+    console.log(faces);
   };
 
+  const snap = async () => {
+    try {
+      const options = { quality: 0.5, base64: true };
+      const data = await camera.current.takePictureAsync(options);
+      console.log(data.uri, "<<<<<<<<<<<<<<<<<<<<<");
+    } catch (error) {
+      console.log(error, "ERROR <<<<<<<<<<<<<");
+    }
+  };
   return (
     <View style={styles.container}>
       <Camera
         style={styles.camera}
+        ref={camera}
         type={type}
         flashMode={flashMode}
         onFacesDetected={({ faces }) => {
           setfacesArray(faces);
+          // console.log(faces);
         }}
         faceDetectorSettings={{
           mode: FaceDetector.FaceDetectorMode.accurate,
           detectLandmarks: FaceDetector.FaceDetectorLandmarks.none,
           runClassifications: FaceDetector.FaceDetectorClassifications.none,
-          minDetectionInterval: 500,
+          minDetectionInterval: 1500,
           tracking: true,
         }}
       >
@@ -74,6 +88,12 @@ export default function App() {
           <Image
             style={styles.switchCamera}
             source={require("./assets/icons8-switch-camera-48.png")}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={snap}>
+          <Image
+            style={styles.switchCamera}
+            source={require("./assets/icons8-bandicam-100.png")}
           />
         </TouchableOpacity>
         {type === Camera.Constants.Type.back && (
